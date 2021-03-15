@@ -1,8 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+
 html {
   background-color: rgb(255, 168, 96);
 }
 
-#header {
+#header, .display {
   margin-top: 30px;
   text-align: center;
+  font-family: 'Syne Mono', monospace;
+}
+
+.clock-container {
+  margin: auto;
+  margin-top: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 3px solid bisque;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  width: 33vw;
+  padding: 1rem;
+  font-family: 'Syne Mono', monospace;
+}
+
+.timer-display {
+  padding: 0 2rem 0 2rem;
+}
+
+.action-button {
+  margin: 20px;
+}
+.display{
+  margin: auto;
+  margin-top: 20px;
+  border: 3px solid bisque;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  width: 33vw;
 }
