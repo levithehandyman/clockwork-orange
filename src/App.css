@@ -11,6 +11,7 @@ html {
 }
 
 .clock-container {
+  background-color:  rgb(255, 168, 96);
   margin: auto;
   margin-top: 20px;
   align-items: center;

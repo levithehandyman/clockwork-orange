@@ -17,15 +17,19 @@ class Header extends Component {
   }
 }
 
-class Timer extends Component {
+class BreakTimer extends Component {
   render() {
     return(
-      <div className='clock-container'>
-        <button className='increment'>
+      <div 
+      id='break-label'
+      className='clock-container'>break length
+        <button id='break-increment' className='increment'>
           <FontAwesome className="far fa-caret-square-up"/>
         </button>
-          <span className='timer-display'>25:00</span>
-        <button className='decriment'>
+          <span id='break-length' className='timer-display'>5</span>
+        <button 
+          id='break-decrement' 
+          className='decrement'>
           <FontAwesome className="far fa-caret-square-down" />
         </button>
       </div>
@@ -33,18 +37,46 @@ class Timer extends Component {
   }
 }
 
+class SessionTimer extends Component {
+  render() {
+    return(
+      <div 
+      id='session-label' 
+      className='clock-container'>
+        session length
+        <button 
+          id='session-increment' 
+          className='increment'>
+          <FontAwesome className="far fa-caret-square-up"/>
+        </button>
+          <span id='session-length' className='timer-display'>25</span>
+        <button 
+          id='session-decrement' 
+          className='decriment'>
+          <FontAwesome className="far fa-caret-square-down" />
+        </button>
+      </div>
+    );
+  }
+}
+
+
 class Display extends Component{
   render() {
     return(
       <div className='display'>
         <h2>time left</h2>
         <br />
-        <span>0:00</span>
+        <span id='time-left'>0:00</span>
         <br />
-        <button className='action-button'>
+        <button 
+          id='start_stop' 
+          className='action-button'>
           <FontAwesome className="fas fa-stopwatch" />
         </button>
-        <button className='action-button'>
+        <button 
+          id='reset'
+          className='action-button'>
           <FontAwesome className="fas fa-sync-alt" />
         </button>
       </div>
@@ -57,8 +89,8 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Timer id=''>break</Timer>
-        <Timer >session</Timer>
+        <BreakTimer >break</BreakTimer>
+        <SessionTimer >session</SessionTimer>
         <Display />
       </div>
     );
