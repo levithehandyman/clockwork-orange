@@ -32,7 +32,6 @@ class App extends Component {
       });
     }
   }
-
   
   breakAdjust(value) {
     let newBreak = this.state.break + parseInt(value);
@@ -102,54 +101,17 @@ class App extends Component {
     return minutes + ':' + seconds;
   }
 
-  
-/*class Header extends App {
-  render() {
-   return(
-
-    );
-  }
-}
-
-class BreakTimer extends App {
-  render() {
-    return(
-      
-    );
-  }
-}
-
-class SessionTimer extends App {
-  render() {
-    return(
-      
-    );
-  }
-}
-
-
-class Display extends App{
-  render() {
-    return(
-       
-    )
-  }
-}   */
-
-
-  
-
   render() {
     return (
       <div>
-        {/*<Header />*/}
+      {/*Header*/}
         
           <div id='header'>
             <h1 className='text'>番茄时钟</h1>
             <h3 className='text'>Fānqié Shízhōng</h3>
           </div>
 
-        {/*<BreakTimer >break</BreakTimer>*/}
+      {/*Break Timer*/}
         <div 
           id='break-label'
           className='clock-container'>break length
@@ -168,7 +130,7 @@ class Display extends App{
           </button>
         </div>
 
-        {/*<SessionTimer >session</SessionTimer>*/}
+      {/*Session Timer*/}
         <div 
             id='session-label' 
             className='clock-container'>
@@ -188,11 +150,11 @@ class Display extends App{
           </button>
         </div>
 
-        {/*<Display />*/}
+      {/*Display */}
         <div className='display'>
           <h2 id='timer-label'>{this.state.timerLabel}</h2>
           <br />
-          <span id='time-left'>{this.secondsIntoClock}</span>
+          <span id='time-left'>{this.secondsIntoClock()}</span>
           <br />
           <button 
             id='start_stop' 
@@ -213,7 +175,6 @@ class Display extends App{
             <FontAwesome className="fas fa-sync-alt" />
           </button>
         </div> 
-
       </div>
     );
   }
