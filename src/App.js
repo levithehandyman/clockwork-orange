@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 var FontAwesome = require('react-fontawesome');
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,10 +14,16 @@ class App extends Component {
       timerLabel: 'Session',
       timerState: 'stopped'
     }
-    this.timerID = undefined;
+    this.timerID = null;
+    this.sessionAdjust = this.sessionAdjust.bind(this);
+    this.breakAdjust = this.breakAdjust.bind(this);
+    this.startStop = this.startStop.bind(this);
+    this.countDown = this.countDown.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
+    this.secondsIntoClock = this.secondsIntoClock.bind(this);
   }
 
-  sessionAdjust = (value) => {
+  sessionAdjust(value) {
     let newSession = this.state.session + parseInt(value);
     if (newSession > 0 && newSession < 61) {
       this.setState({
@@ -29,7 +34,7 @@ class App extends Component {
   }
 
   
-  breakAdjust = (value) => {
+  breakAdjust(value) {
     let newBreak = this.state.break + parseInt(value);
     if (newBreak > 0 && newBreak < 61) {
       this.setState({
@@ -38,7 +43,7 @@ class App extends Component {
     }
   }
   
-  startStop = () => {
+  startStop() {
     if (this.state.timerState === 'stopped') {
       this.timerID = setInterval(this.countdown, 1000);
       this.setState({
@@ -52,13 +57,13 @@ class App extends Component {
     }
   }
   
-  countDown = () => {
+  countDown() {
     let timer = this.state.timer - 1;
     this.setState({
       timer: timer
     });
     if (timer === 0) {
-      //this.audioBeep.play()
+      this.audioBeep.play()
     };
     if (timer < 0) {
       if (this.state.timerLabel === 'Session') {
@@ -75,7 +80,7 @@ class App extends Component {
     }
   }
   
-  resetTimer = () => {
+  resetTimer() {
     this.setState({
       session: 25,
       break: 5,
@@ -84,21 +89,29 @@ class App extends Component {
       timerState: 'stopped'
     });
     clearInterval(this.timerID);
-    this.timerID = undefined;
+    this.timerID = null;
     this.audioBeep.pause();
     this.audioBeep.currentTime = 0;
   }
   
-  secondsIntoClock = () => {
-    let minutes = Math.floor(this.state.timer/ 60);
+  secondsIntoClock(){
+    let minutes = Math.floor(this.state.timer / 60);
     let seconds = this.state.timer - minutes * 60;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    minutes = minutes < 10? '0' + minutes : minutes;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
     return minutes + ':' + seconds;
   }
 
   
-/*class Header extends Component {
+/*class Header extends App {
+  render() {
+   return(
+
+    );
+  }
+}
+
+class BreakTimer extends App {
   render() {
     return(
       
@@ -106,15 +119,7 @@ class App extends Component {
   }
 }
 
-class BreakTimer extends Component {
-  render() {
-    return(
-      
-    );
-  }
-}
-
-class SessionTimer extends Component {
+class SessionTimer extends App {
   render() {
     return(
       
@@ -123,83 +128,93 @@ class SessionTimer extends Component {
 }
 
 
-class Display extends Component{
+class Display extends App{
   render() {
     return(
-      
+       
     )
   }
-}*/
+}   */
+
 
   
 
   render() {
     return (
       <div>
-        {/*Header*/}
-        <div id='header'>
-        <h1 className='text'>番茄时钟</h1>
-        <h3 className='text'>Fānqié Shízhōng</h3>
-      </div>
-
-        {/*<BreakTimer >break</BreakTimer>
+        {/*<Header />*/}
         
-        need to add onClicks to this 
-        
-        */}
-      <div 
-      id='break-label'
-      className='clock-container'>break length
-        <button id='break-increment' className='increment'>
-          <FontAwesome className="far fa-caret-square-up"/>
-        </button>
-          <span id='break-length' className='timer-display'>5</span>
-        <button 
-          id='break-decrement' 
-          className='decrement'>
-          <FontAwesome className="far fa-caret-square-down" />
-        </button>
-      </div>
+          <div id='header'>
+            <h1 className='text'>番茄时钟</h1>
+            <h3 className='text'>Fānqié Shízhōng</h3>
+          </div>
 
-    
+        {/*<BreakTimer >break</BreakTimer>*/}
+        <div 
+          id='break-label'
+          className='clock-container'>break length
+          <button 
+            id='break-increment' 
+            className='increment'
+            onClick={() => this.breakAdjust('1')}>
+             <FontAwesome className="far fa-caret-square-up"/>
+          </button>
+            <span id='break-length' className='timer-display'>{this.state.break}</span>
+          <button 
+            id='break-decrement' 
+            className='decrement'
+            onClick={() => this.breakAdjust('-1')}>
+            <FontAwesome className="far fa-caret-square-down" />
+          </button>
+        </div>
+
         {/*<SessionTimer >session</SessionTimer>*/}
-      <div 
-      id='session-label' 
-      className='clock-container'>
-        session length
-        <button 
-          id='session-increment' 
-          className='increment'
-          onClick={() => this.sessionAdjust('1')}>
+        <div 
+            id='session-label' 
+            className='clock-container'>
+            session length
+          <button 
+            id='session-increment' 
+            className='increment'
+            onClick={() => this.sessionAdjust('1')}>
           <FontAwesome className="far fa-caret-square-up"/>
-        </button>
-          <span id='session-length' className='timer-display'>25</span>
-        <button 
-          id='session-decrement' 
-          className='decrement'
-          onClick={() => this.sessionAdjust('-1')}>
+          </button>
+            <span id='session-length' className='timer-display'>{this.state.session}</span>
+          <button 
+            id='session-decrement' 
+            className='decrement'
+            onClick={() => this.sessionAdjust('-1')}>
           <FontAwesome className="far fa-caret-square-down" />
-        </button>
-      </div>
+          </button>
+        </div>
 
         {/*<Display />*/}
         <div className='display'>
-        <h2>time left</h2>
-        <br />
-        <span id='time-left'>0:00</span>
-        <br />
-        <button 
-          id='start_stop' 
-          className='action-button'>
-          <FontAwesome className="fas fa-stopwatch" />
-        </button>
-        <button 
-          id='reset'
-          className='action-button'>
-          <FontAwesome className="fas fa-sync-alt" />
-        </button>
-      </div>  
-    </div>
+          <h2 id='timer-label'>{this.state.timerLabel}</h2>
+          <br />
+          <span id='time-left'>{this.secondsIntoClock}</span>
+          <br />
+          <button 
+            id='start_stop' 
+            className='action-button'
+            onClick={this.startStop}>
+            <FontAwesome className="fas fa-stopwatch" />
+            <audio 
+            id='beep' 
+            src='https://res.cloudinary.com/dnv60ey6k/video/upload/v1615996344/samples/beep_aygyme.wav'
+            ref={(audio) => {this.audioBeep = audio}}
+            />
+          </button>
+          <button 
+            id='reset'
+            className='action-button'
+            onClick={this.resetTimer}
+            >
+            <FontAwesome className="fas fa-sync-alt" />
+          </button>
+        </div> 
+
+      </div>
     );
   }
 }
