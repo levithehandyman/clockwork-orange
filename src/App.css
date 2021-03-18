@@ -10,6 +10,12 @@ html {
   font-family: 'Syne Mono', monospace;
 }
 
+#header {
+ font-size:x-large;
+ padding: 20px;
+ background-image: radial-gradient(circle,rgb(255, 168, 96), #e33d3d 20%);
+}
+
 .clock-container {
   background-color:  rgb(255, 168, 96);
   margin: auto;
@@ -22,6 +28,7 @@ html {
   border: 3px solid bisque;
   border-bottom-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  box-shadow: 1em 0  2.4em rgb(247, 247, 134);
   width: 33vw;
   padding: 1rem;
   font-family: 'Syne Mono', monospace;
@@ -42,5 +49,6 @@ html {
   border: 3px solid bisque;
   border-bottom-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  box-shadow: 1em 0  2.4em rgb(247, 247, 134);
   width: 33vw;
 }
