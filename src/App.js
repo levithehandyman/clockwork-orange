@@ -93,7 +93,7 @@ class App extends Component {
     this.audioBeep.currentTime = 0;
   }
   
-  secondsIntoClock(){
+  secondsIntoClock() {
     let minutes = Math.floor(this.state.timer / 60);
     let seconds = this.state.timer - minutes * 60;
     seconds = seconds < 10 ? '0' + seconds : seconds;
@@ -109,54 +109,68 @@ class App extends Component {
           <div id='header'>
             <h1 
             id='tomato-clock-chinese'
-            className='text'>番茄时钟</h1>
+            className='text'>
+            番茄时钟
+            </h1>
           </div>
 
       {/*Break Timer*/}
         <div 
           id='break-label'
-          className='clock-container'>break length
+          className='clock-container'>
+          break length
+
           <button 
             id='break-increment' 
             className='increment'
             onClick={() => this.breakAdjust('1')}>
              <FontAwesome className="far fa-caret-square-up"/>
           </button>
+
             <span id='break-length' className='timer-display'>{this.state.break}</span>
+
           <button 
             id='break-decrement' 
             className='decrement'
             onClick={() => this.breakAdjust('-1')}>
             <FontAwesome className="far fa-caret-square-down" />
           </button>
+
         </div>
 
       {/*Session Timer*/}
         <div 
-            id='session-label' 
-            className='clock-container'>
-            session length
+          id='session-label' 
+          className='clock-container'>
+          session length
+
           <button 
             id='session-increment' 
             className='increment'
             onClick={() => this.sessionAdjust('1')}>
           <FontAwesome className="far fa-caret-square-up"/>
           </button>
+
             <span id='session-length' className='timer-display'>{this.state.session}</span>
+
           <button 
             id='session-decrement' 
             className='decrement'
             onClick={() => this.sessionAdjust('-1')}>
           <FontAwesome className="far fa-caret-square-down" />
           </button>
+
         </div>
 
       {/*Display */}
         <div className='display'>
+
           <h2 id='timer-label'>{this.state.timerLabel}</h2>
           <br />
+
           <span id='time-left'>{this.secondsIntoClock()}</span>
           <br />
+
           <button 
             id='start_stop' 
             className='action-button'
@@ -168,6 +182,7 @@ class App extends Component {
             ref={(audio) => {this.audioBeep = audio}}
             />
           </button>
+
           <button 
             id='reset'
             className='action-button'
@@ -175,7 +190,9 @@ class App extends Component {
             >
             <FontAwesome className="fas fa-sync-alt" />
           </button>
+
         </div> 
+
       </div>
     );
   }
