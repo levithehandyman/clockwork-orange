@@ -44,7 +44,7 @@ class App extends Component {
   
   startStop() {
     if (this.state.timerState === 'stopped') {
-      this.timerID = setInterval(this.countdown, 1000);
+      this.timerID = setInterval(this.countDown, 1000);
       this.setState({
         timerState: 'playing'
       });
@@ -107,8 +107,9 @@ class App extends Component {
       {/*Header*/}
         
           <div id='header'>
-            <h1 className='text'>番茄时钟</h1>
-            <h3 className='text'>Fānqié Shízhōng</h3>
+            <h1 
+            id='tomato-clock-chinese'
+            className='text'>番茄时钟</h1>
           </div>
 
       {/*Break Timer*/}
